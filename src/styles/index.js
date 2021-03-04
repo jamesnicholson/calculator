@@ -10,15 +10,21 @@ const style = {
   normalFontSize: '1em',
   largeFontSize: '1.5em',
   extraLargeFontSize: '2em',
-  massiveLargeFontSize: '6em',
+  massiveFontSize: '4em',
 };
 
 export const title = css`
-  font-size: ${style.extraLargeFontSize};
+  font-size: ${style.massiveFontSize};
   color: ${style.primaryColor};
   text-shadow: 1px 1px ${style.secondaryColor};
   padding: 10px;
   max-width:600px;
   margin: 10px auto;
 `
+export const button = css`
+  font-size: ${style.normalFontSize};
+  padding: 10px;
+  background: ${style.secondaryColor};
+`
+
 export default style
