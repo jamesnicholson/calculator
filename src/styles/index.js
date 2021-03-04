@@ -4,13 +4,17 @@ import { css } from 'styled-components'
 const style = {
   primaryColor: 'black',
   secondaryColor: 'white',
+
   borderColor: '#5d5d5d60',
-  backgroundColor: 'aliceblue',
+  backgroundColor: '#607d8b',
   smallFontSize: '0.8em',
   normalFontSize: '1em',
   largeFontSize: '1.5em',
   extraLargeFontSize: '2em',
   massiveFontSize: '4em',
+  buttonColor: '#e6e6e7',
+  buttonHoverBackground: '#aaaaab',
+  digitButtonBackground:'#595c64',
 };
 
 export const title = css`
@@ -20,19 +24,30 @@ export const title = css`
   padding: 10px;
   max-width:600px;
   margin: 10px auto;
+  text-align:center;
 `
 export const button = css`
   display: flex;
   font-size: ${style.normalFontSize};
+  color:${style.buttonColor};
   padding: 10px;
   margin:1px;
-  background: ${style.secondaryColor};
+  background: ${style.digitButtonBackground};
   align-items: center;
   min-width: ${props =>(props.size === "big" ? `7em` : `3em`)};
   min-height: 3em;
   justify-content: center;
   border: 1px solid #8bc34a5c;
+  &:hover {
+    background:${style.buttonHoverBackground};
+  }
+`
 
+export const output = css`
+  padding: 10px;
+  width: 100%;
+  border: white;
+  margin-bottom: 10px;
 `
 export const calculator = css`
   display: flex;
@@ -42,10 +57,13 @@ export const calculator = css`
   background: ${style.backgroundColor};
   align-items: center;
   justify-content: center;
+  max-width: 385px;
+  margin: 0 auto;
 `
 export const buttonRow = css`
   display: flex;
   flex-direction: row;
+  width:100%;
   font-size: ${style.largeFontSize};
   background: ${style.backgroundColor};
 `

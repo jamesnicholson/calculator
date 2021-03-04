@@ -1,45 +1,77 @@
 import styled from 'styled-components'
 import Button from '../Button';
-import { calculator, buttonRow } from '../../styles'
+import { calculator, buttonRow, output } from '../../styles'
+import { 
+    ZERO,
+    ONE,
+    TWO,
+    THREE,
+    FOUR,
+    FIVE,
+    SIX,
+    SEVEN,
+    EIGHT,
+    NINE,
+    CLEAR,
+    COMMA,
+    PLUSMINUS,
+    PERCENTAGE,
+    DIVIDE,
+    MULTIPLY,
+    SUBTRACT,
+    ADD,
+    EQUALS,
+    
+     } from '../../utils/enums';
+
 const TheCalculator = styled.div`
   ${calculator}
 `
 const Row = styled.div`
   ${buttonRow}
 `
+const Output = styled.input`
+  ${output}
+  `
 const Calculator = () => {
     
     return  <TheCalculator>
                 <Row>
-                    <Button title="AS" handle={()=>console.log("hello")}  />
-                    <Button title="&#177;" handle={()=>console.log("hello")}  />
-                    <Button title="%" handle={()=>console.log("hello")}  />
-                    <Button title="&divide;" handle={()=>console.log("hello")}  />
+                    <Output type="text" />
                 </Row>
                 <Row>
-                    <Button title="7" handle={()=>console.log("hello")}  />
-                    <Button title="8" handle={()=>console.log("hello")}  />
-                    <Button title="9" handle={()=>console.log("hello")}  />
-                    <Button title="&times;" handle={()=>console.log("hello")}  />
+                    <Button title={CLEAR}  handle={()=>console.log("hello")} />
+                    <Button title={PLUSMINUS} handle={()=>console.log("hello")}  />
+                    <Button title={PERCENTAGE} handle={()=>console.log("hello")}  />
+                    <Button title={DIVIDE} handle={()=>console.log("hello")}  />
                 </Row>
                 <Row>
-                    <Button title="4" handle={()=>console.log("hello")}  />
-                    <Button title="5" handle={()=>console.log("hello")}  />
-                    <Button title="6" handle={()=>console.log("hello")}  />
-                    <Button title="-" handle={()=>console.log("hello")}  />
+                    <Button title={SEVEN} handle={()=>console.log("hello")}  />
+                    <Button  title={EIGHT} handle={()=>console.log("hello")}  />
+                    <Button title={NINE} handle={()=>console.log("hello")}  />
+                    <Button title={MULTIPLY} handle={()=>console.log("hello")}  />
+                </Row>
+                <Row>
+                    <Button title={FOUR} handle={()=>console.log("hello")}  />
+                    <Button title={FIVE} handle={()=>console.log("hello")}  />
+                    <Button title={SIX} handle={()=>console.log("hello")}  />
+                    <Button title={SUBTRACT} handle={()=>console.log("hello")}  />
+                </Row>
+                <Row>
+                    <Button title={ONE} handle={()=>console.log("hello")}  />
+                    <Button title={TWO} handle={()=>console.log("hello")}  />
+                    <Button title={THREE} handle={()=>console.log("hello")}  />
+                    <Button title={ADD} handle={()=>console.log("hello")}  />
              
                 </Row>
                 <Row>
-                    <Button title="1" handle={()=>console.log("hello")}  />
-                    <Button title="2" handle={()=>console.log("hello")}  />
-                    <Button title="3" handle={()=>console.log("hello")}  />
-                    <Button title="+" handle={()=>console.log("hello")}  />
-             
-                </Row>
-                <Row>
-                    <Button title="0" handle={()=>console.log("hello")}  />
-                    <Button title="," handle={()=>console.log("hello")}  />
-                    <Button size="big" title="&#61;" handle={()=>console.log("hello")}  />
+                    <Button title={ZERO} handle={()=>console.log("hello")}  />
+                    <Button title={COMMA} handle={()=>console.log("hello")}  />
+                    <Button 
+                        title={EQUALS}
+                        size="big"
+                        handle={()=>console.log("hello")}
+                    />
                 </Row>
             </TheCalculator>
 };

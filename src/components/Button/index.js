@@ -12,7 +12,7 @@ function Button(props) {
   }
   
   return  <ButtonCard onClick={()=>handler()} size={props.size}>
-          {props.title ? props.title : "1" }
+            {props.title ? props.title : null }
           </ButtonCard>
 }
 
