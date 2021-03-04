@@ -22,9 +22,31 @@ export const title = css`
   margin: 10px auto;
 `
 export const button = css`
+  display: flex;
   font-size: ${style.normalFontSize};
   padding: 10px;
+  margin:1px;
   background: ${style.secondaryColor};
-`
+  align-items: center;
+  min-width: ${props =>(props.size === "big" ? `7em` : `3em`)};
+  min-height: 3em;
+  justify-content: center;
+  border: 1px solid #8bc34a5c;
 
+`
+export const calculator = css`
+  display: flex;
+  flex-direction: column;
+  font-size: ${style.normalFontSize};
+  padding: 10px;
+  background: ${style.backgroundColor};
+  align-items: center;
+  justify-content: center;
+`
+export const buttonRow = css`
+  display: flex;
+  flex-direction: row;
+  font-size: ${style.largeFontSize};
+  background: ${style.backgroundColor};
+`
 export default style
