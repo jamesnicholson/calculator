@@ -1,7 +1,14 @@
+import styled from 'styled-components';
+import { title } from '../../styles'
+
+const Title = styled.h1`
+  ${title}
+`
+
 function App() {
   return (
     <div className="App">
-        <h1>Hello</h1>
+        <Title>Hello Calculator</Title>
     </div>
   );
 }
