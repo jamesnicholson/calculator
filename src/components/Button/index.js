@@ -5,9 +5,11 @@ const ButtonCard = styled.div`
   ${button}
 `
 function Button(props) {
-  const handler = () =>{
-    if(props.handle){
-      props.handle();
+  const handler = () => {
+    if(!Number(props.title)){
+      console.log("Do math", props.title)
+    } else {
+      console.log("Its a Digit", props.title)
     }
   }
   

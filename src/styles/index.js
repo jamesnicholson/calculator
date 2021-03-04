@@ -43,7 +43,7 @@ export const button = css`
   }
 `
 
-export const output = css`
+export const display = css`
   padding: 10px;
   width: 100%;
   border: white;

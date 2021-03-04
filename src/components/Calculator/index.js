@@ -1,6 +1,9 @@
+import { useEffect} from "react";
 import styled from 'styled-components'
 import Button from '../Button';
-import { calculator, buttonRow, output } from '../../styles'
+import { useInput } from '../../hooks'
+import { calculator, buttonRow } from '../../styles'
+
 import { 
     ZERO,
     ONE,
@@ -21,8 +24,7 @@ import {
     SUBTRACT,
     ADD,
     EQUALS,
-    
-     } from '../../utils/enums';
+} from '../../utils/enums';
 
 const TheCalculator = styled.div`
   ${calculator}
@@ -30,48 +32,44 @@ const TheCalculator = styled.div`
 const Row = styled.div`
   ${buttonRow}
 `
-const Output = styled.input`
-  ${output}
-  `
+
 const Calculator = () => {
-    
+    const [value, input] = useInput();
+    useEffect(() => {
+        console.log(value);
+      },[value])
+      
     return  <TheCalculator>
+                <Row> {input} </Row>
                 <Row>
-                    <Output type="text" />
+                    <Button title={CLEAR} />
+                    <Button title={PLUSMINUS} />
+                    <Button title={PERCENTAGE} />
+                    <Button title={DIVIDE} />
                 </Row>
                 <Row>
-                    <Button title={CLEAR}  handle={()=>console.log("hello")} />
-                    <Button title={PLUSMINUS} handle={()=>console.log("hello")}  />
-                    <Button title={PERCENTAGE} handle={()=>console.log("hello")}  />
-                    <Button title={DIVIDE} handle={()=>console.log("hello")}  />
+                    <Button title={SEVEN} />
+                    <Button title={EIGHT} />
+                    <Button title={NINE} />
+                    <Button title={MULTIPLY} />
                 </Row>
                 <Row>
-                    <Button title={SEVEN} handle={()=>console.log("hello")}  />
-                    <Button  title={EIGHT} handle={()=>console.log("hello")}  />
-                    <Button title={NINE} handle={()=>console.log("hello")}  />
-                    <Button title={MULTIPLY} handle={()=>console.log("hello")}  />
+                    <Button title={FOUR} />
+                    <Button title={FIVE} />
+                    <Button title={SIX} />
+                    <Button title={SUBTRACT} />
                 </Row>
                 <Row>
-                    <Button title={FOUR} handle={()=>console.log("hello")}  />
-                    <Button title={FIVE} handle={()=>console.log("hello")}  />
-                    <Button title={SIX} handle={()=>console.log("hello")}  />
-                    <Button title={SUBTRACT} handle={()=>console.log("hello")}  />
-                </Row>
-                <Row>
-                    <Button title={ONE} handle={()=>console.log("hello")}  />
-                    <Button title={TWO} handle={()=>console.log("hello")}  />
-                    <Button title={THREE} handle={()=>console.log("hello")}  />
-                    <Button title={ADD} handle={()=>console.log("hello")}  />
+                    <Button title={ONE} />
+                    <Button title={TWO} />
+                    <Button title={THREE} />
+                    <Button title={ADD} />
              
                 </Row>
                 <Row>
-                    <Button title={ZERO} handle={()=>console.log("hello")}  />
-                    <Button title={COMMA} handle={()=>console.log("hello")}  />
-                    <Button 
-                        title={EQUALS}
-                        size="big"
-                        handle={()=>console.log("hello")}
-                    />
+                    <Button title={ZERO} />
+                    <Button title={COMMA} />
+                    <Button title={EQUALS} size="big" />
                 </Row>
             </TheCalculator>
 };
