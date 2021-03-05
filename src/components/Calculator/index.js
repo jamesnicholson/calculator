@@ -1,4 +1,4 @@
-import { useEffect} from "react";
+import { useEffect } from "react";
 import styled from 'styled-components'
 import Button from '../Button';
 import { useInput } from '../../hooks'
@@ -37,27 +37,27 @@ const Calculator = () => {
     const [value, input] = useInput();
     useEffect(() => {
         console.log(value);
-      },[value])
-      
+    },[value])
+
     return  <TheCalculator>
                 <Row> {input} </Row>
                 <Row>
                     <Button title={CLEAR} />
-                    <Button title={PLUSMINUS} />
+                    <Button title={PLUSMINUS}/>
                     <Button title={PERCENTAGE} />
-                    <Button title={DIVIDE} />
+                    <Button title={DIVIDE}/>
                 </Row>
                 <Row>
-                    <Button title={SEVEN} />
-                    <Button title={EIGHT} />
-                    <Button title={NINE} />
-                    <Button title={MULTIPLY} />
+                    <Button title={SEVEN}/>
+                    <Button title={EIGHT}/>
+                    <Button title={NINE}/>
+                    <Button title={MULTIPLY}/>
                 </Row>
                 <Row>
-                    <Button title={FOUR} />
-                    <Button title={FIVE} />
-                    <Button title={SIX} />
-                    <Button title={SUBTRACT} />
+                    <Button title={FOUR}/>
+                    <Button title={FIVE}/>
+                    <Button title={SIX}/>
+                    <Button title={SUBTRACT}/>
                 </Row>
                 <Row>
                     <Button title={ONE} />

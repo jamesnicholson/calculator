@@ -14,11 +14,12 @@ export const PLUSMINUS = "\u00B1";
 export const PERCENTAGE = "\u0025";
 export const DIVIDE = "\u00F7";
 export const MULTIPLY = "\u00D7";
-export const SUBTRACT = "\u02D7";
+export const SUBTRACT = "-";
 export const ADD = "\u002B";
 export const EQUALS = "\u003D";
 export const DIGIT = "DIGIT";
 export const ACTION = "ACTION";
-
-
+export const SET_COMPUTATION = "SET_COMPUTATION";
+export const SET_RESULT = "SET_RESULT";
+export const SET_CLEAR = "SET_CLEAR";
 
