@@ -1,7 +1,6 @@
-import { useEffect } from "react";
 import styled from 'styled-components'
+import Display from '../Display';
 import Button from '../Button';
-import { useInput } from '../../hooks'
 import { calculator, buttonRow } from '../../styles'
 
 import { 
@@ -21,8 +20,8 @@ import {
     PERCENTAGE,
     DIVIDE,
     MULTIPLY,
-    SUBTRACT,
-    ADD,
+    MINUS,
+    PLUS,
     EQUALS,
 } from '../../utils/enums';
 
@@ -34,42 +33,38 @@ const Row = styled.div`
 `
 
 const Calculator = () => {
-    const [value, input] = useInput();
-    useEffect(() => {
-        console.log(value);
-    },[value])
 
     return  <TheCalculator>
-                <Row> {input} </Row>
+                <Row><Display /></Row>
                 <Row>
-                    <Button title={CLEAR} />
-                    <Button title={PLUSMINUS}/>
-                    <Button title={PERCENTAGE} />
-                    <Button title={DIVIDE}/>
+                    <Button id={CLEAR} />
+                    <Button id={PLUSMINUS}/>
+                    <Button id={PERCENTAGE} />
+                    <Button id={DIVIDE}/>
                 </Row>
                 <Row>
-                    <Button title={SEVEN}/>
-                    <Button title={EIGHT}/>
-                    <Button title={NINE}/>
-                    <Button title={MULTIPLY}/>
+                    <Button id={SEVEN}/>
+                    <Button id={EIGHT}/>
+                    <Button id={NINE}/>
+                    <Button id={MULTIPLY}/>
                 </Row>
                 <Row>
-                    <Button title={FOUR}/>
-                    <Button title={FIVE}/>
-                    <Button title={SIX}/>
-                    <Button title={SUBTRACT}/>
+                    <Button id={FOUR}/>
+                    <Button id={FIVE}/>
+                    <Button id={SIX}/>
+                    <Button id={MINUS}/>
                 </Row>
                 <Row>
-                    <Button title={ONE} />
-                    <Button title={TWO} />
-                    <Button title={THREE} />
-                    <Button title={ADD} />
+                    <Button id={ONE} />
+                    <Button id={TWO} />
+                    <Button id={THREE} />
+                    <Button id={PLUS} />
              
                 </Row>
                 <Row>
-                    <Button title={ZERO} />
-                    <Button title={COMMA} />
-                    <Button title={EQUALS} size="big" />
+                    <Button id={ZERO} />
+                    <Button id={COMMA} />
+                    <Button id={EQUALS} size="big" />
                 </Row>
             </TheCalculator>
 };

@@ -1,9 +1,10 @@
-import { SET_COMPUTATION, SET_RESULT, SET_CLEAR } from '../utils/enums'
+import { SET_COMPUTATION, SET_RESULT, SET_CLEAR, CLEAR_ALL, CLEAR_INPUT , SET_CURRENT_OPERATOR} from '../utils/enums'
 import { evaluate } from 'mathjs'
 const setComputation = (payload, state) => {
     return {
         ...state,
-        computation: state.computation + payload
+        computation: state.computation + payload,
+        result:  state.computation + payload
     };
 };
 const setResult = (payload, state) => {
@@ -13,12 +14,32 @@ const setResult = (payload, state) => {
         result: evaluate(state.computation),
     };
 };
-const setClear = (state) => {
+const setCurrentOperator = (payload, state) => {
+    console.log(payload)
     return {
         ...state,
-        computation: "",
-        result: 0,
+        currentOperator: payload
     };
+};
+const setClear = (payload, state) => {
+    
+        switch(payload){
+            case CLEAR_ALL:
+                console.log(CLEAR_ALL)
+                return {
+                    ...state,
+                    computation: "",
+                    result: 0, 
+                };
+            case CLEAR_INPUT:
+                return {
+                    ...state,
+                    //result: 0, 
+                };
+            default:
+                break;
+        }
+   
 };
 
 
@@ -27,9 +48,11 @@ const reducer = (state, action) => {
         case SET_COMPUTATION :
             return setComputation(action.payload, state);
         case SET_RESULT :
-                return setResult(action.payload, state);
+            return setResult(action.payload, state);
+        case SET_CURRENT_OPERATOR :
+            return setCurrentOperator(action.payload, state);
         case SET_CLEAR :
-                return setClear(state);
+            return setClear(action.payload, state);
         default : 
            return state;
     };
