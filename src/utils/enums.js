@@ -24,4 +24,3 @@ export const SET_RESULT = "SET_RESULT";
 export const SET_CURRENT_OPERATOR = "SET_CURRENT_OPERATOR";
 export const SET_CLEAR = "SET_CLEAR";
 export const CLEAR_ALL = "CLEAR_ALL";
-export const CLEAR_INPUT = "CLEAR_INPUT";

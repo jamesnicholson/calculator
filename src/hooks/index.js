@@ -2,10 +2,14 @@ import React, { useState, useRef, useContext, useEffect} from 'react'
 import styled from 'styled-components'
 import { GlobalContext } from '../context'
 import { SET_COMPUTATION, SET_RESULT, EQUALS, CLEAR, SET_CLEAR, PLUS, MINUS, MULTIPLY, DIVIDE, CLEAR_ALL, SET_CURRENT_OPERATOR } from '../utils/enums'
-import { display } from '../styles'
+import { displayInput , displayEquation} from '../styles'
 
-const Display = styled.input`
-  ${display}
+const DisplayInput = styled.input`
+  ${displayInput}
+  text-align: ${props => props.align};
+  `
+const DisplayEquation = styled.div`
+  ${displayEquation}
   `
   function mathOperators(operator){
     switch(operator){
@@ -26,7 +30,8 @@ export const useInput = () => {
     const {state} = useContext(GlobalContext);
     const [value, setValue] = useState("");
     const inputRef = useRef(null)
-    const input = <Display
+    const input = <DisplayInput
+                    align={value ? "right"  :  "left"}
                     value={value}
                     ref={inputRef}
                     onChange={e => setValue(e.target.value)}
@@ -46,14 +51,13 @@ export const useDisplay = () => {
   const {state} = useContext(GlobalContext);
   const [value, setValue] = useState("");
   const inputRef = useRef(null)
-  const display = <div>{value}</div>
   useEffect(() => {
     if(state){
-      setValue(state.computation)
+      setValue(<DisplayEquation>{state.computation}</DisplayEquation>)
     }
   }, [state, setValue])
 
-  return [display, inputRef];
+  return [value, inputRef];
 };
 
 export const useButton = (title) => {

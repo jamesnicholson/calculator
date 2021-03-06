@@ -4,10 +4,9 @@ import { css } from 'styled-components'
 const style = {
   primaryColor: 'black',
   secondaryColor: 'white',
-
   borderColor: '#5d5d5d60',
   backgroundColor: '#607d8b',
-  smallFontSize: '0.8em',
+  smallFontSize: '0.6em',
   normalFontSize: '1em',
   largeFontSize: '1.5em',
   extraLargeFontSize: '2em',
@@ -42,12 +41,28 @@ export const button = css`
     background:${style.buttonHoverBackground};
   }
 `
-
-export const display = css`
+export const displayInput = css`
+  font-size:${style.extraLargeFontSize};
+  text-align: center;
   padding: 10px;
-  width: 100%;
+  width: 95%;
   border: white;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+  transition: margin .8s ease;
+`
+export const displayEquation = css`
+  width: 100%;
+  font-size:${style.smallFontSize};
+  padding: 4px;
+`
+export const displayRow = css`
+  width: 100%;
+  min-height: 26px;
+`
+export const displayContainer = css`
+  width: 100%;
+  display:flex;
+  flex-direction: column;
 `
 export const calculator = css`
   display: flex;

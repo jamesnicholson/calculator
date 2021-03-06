@@ -4,7 +4,7 @@ import reducer from '../reducers'
 const initialState = {
     currentOperator: "",
     computation: "",
-    result:0
+    result:""
 };
 
 export const GlobalContext = createContext(initialState);
