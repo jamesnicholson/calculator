@@ -98,7 +98,7 @@ export const calculator = css`
   align-items: center;
   justify-content: center;
   max-width: 385px;
-  margin: 0 auto;
+  margin: 20px auto;
   @media (max-width: 600px) {
     max-width: 290px;
   }
