@@ -3,10 +3,10 @@ import styled from 'styled-components'
 import { displayRow, displayContainer } from '../../styles'
 
 const DisplayRow = styled.div`
-${displayRow}
+    ${displayRow}
 `
 const DisplayContainer = styled.div`
-${displayContainer}
+    ${displayContainer}
 `
 
 const Display = () => {

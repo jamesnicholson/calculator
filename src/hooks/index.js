@@ -1,7 +1,24 @@
 import React, { useState, useRef, useContext, useEffect} from 'react'
 import styled from 'styled-components'
 import { GlobalContext } from '../context'
-import { SET_COMPUTATION, SET_RESULT, EQUALS, CLEAR, SET_CLEAR, PLUS, MINUS, MULTIPLY, DIVIDE, CLEAR_ALL, SET_CURRENT_OPERATOR } from '../utils/enums'
+import { 
+  SET_COMPUTATION,
+  SET_RESULT,
+  SET_COMPUTATION_PERCENTAGE,
+  EQUALS,
+  COMMA,
+  PERCENTAGE,
+  PLUSMINUS,
+  SET_PLUS_MINUS,
+  CLEAR,
+  SET_CLEAR,
+  PLUS,
+  MINUS,
+  MULTIPLY,
+  DIVIDE,
+  CLEAR_ALL,
+  SET_CURRENT_OPERATOR
+} from '../utils/enums'
 import { displayInput , displayEquation} from '../styles'
 
 const DisplayInput = styled.input`
@@ -11,19 +28,19 @@ const DisplayInput = styled.input`
 const DisplayEquation = styled.div`
   ${displayEquation}
   `
-  function mathOperators(operator){
-    switch(operator){
-        case PLUS:
-            return "+";
-        case MINUS:
-            return "-";
-        case MULTIPLY:
-            return "*";
-        case DIVIDE:
-            return "/";
-        default : 
-            return operator;
-      }
+function mathOperators(operator){
+  switch(operator){
+    case PLUS:
+      return "+";
+    case MINUS:
+      return "-";
+    case MULTIPLY:
+      return "*";
+    case DIVIDE:
+      return "/";
+    default : 
+      return operator;
+  }
 }
 
 export const useInput = () => {
@@ -38,6 +55,7 @@ export const useInput = () => {
                     type="text"
                     placeholder="hello.."
                 />;
+
     useEffect(() => {
       if(state){
         setValue(state.result)
@@ -70,14 +88,50 @@ export const useButton = (title) => {
           payload: CLEAR_ALL
         });
         break;
-      case EQUALS:
+      case COMMA:
         dispatch({
-          type: SET_RESULT,
+          type: SET_COMPUTATION,
           payload: title
         });
         break;
+      case PERCENTAGE:
+        if(!state.computation.includes(EQUALS)){
+          dispatch({
+            type: SET_COMPUTATION_PERCENTAGE,
+            payload: title
+          });
+        }
+        break;
+      case PLUSMINUS:
+        dispatch({
+          type: SET_PLUS_MINUS,
+          payload: title
+        });
+        break;  
+      case EQUALS:
+        if(state.computation && state.result){
+          if(!state.computation.includes(EQUALS)){
+            dispatch({
+              type: SET_RESULT,
+              payload: title
+            });
+          }
+        }
+        break;
       default:
         if(!Number(title)) {
+
+          if(state.computation.includes(EQUALS)){
+            dispatch({
+              type: SET_CLEAR,
+              payload: CLEAR_ALL
+            });
+            dispatch({
+              type: SET_COMPUTATION,
+              payload: state.result
+            });
+          }
+
           if(state.currentOperator.length === 0) {
             dispatch({
               type: SET_COMPUTATION,
@@ -87,19 +141,23 @@ export const useButton = (title) => {
               type: SET_CURRENT_OPERATOR,
               payload: mathOperators(title)
             });
-          }else{
-              return null;
           }
-          
+
       } else {
+        if(state.computation.includes(EQUALS)){
           dispatch({
-              type: SET_COMPUTATION,
-              payload: title
+            type: SET_CLEAR,
+            payload: CLEAR_ALL
           });
-          dispatch({
-              type: SET_CURRENT_OPERATOR,
-              payload: ""
-          });
+        }
+        dispatch({
+            type: SET_COMPUTATION,
+            payload: title
+        });
+        dispatch({
+            type: SET_CURRENT_OPERATOR,
+            payload: ""
+        });
       }
       break;
     }

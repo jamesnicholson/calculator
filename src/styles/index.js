@@ -53,7 +53,10 @@ export const displayInput = css`
 export const displayEquation = css`
   width: 100%;
   font-size:${style.smallFontSize};
-  padding: 4px;
+  font-size: 0.55em;
+  padding: 5px;
+  color: aliceblue;
+  text-shadow: 1px 1px #0000007a;
 `
 export const displayRow = css`
   width: 100%;
