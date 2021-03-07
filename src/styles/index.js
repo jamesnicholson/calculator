@@ -9,7 +9,8 @@ const style = {
   smallFontSize: '0.6em',
   normalFontSize: '1em',
   largeFontSize: '1.5em',
-  extraLargeFontSize: '2em',
+  midlargeFontSize: '2.1em',
+  extraLargeFontSize: '2.6em',
   massiveFontSize: '4em',
   buttonColor: '#e6e6e7',
   buttonHoverBackground: '#aaaaab',
@@ -24,6 +25,12 @@ export const title = css`
   max-width:600px;
   margin: 10px auto;
   text-align:center;
+  @media (max-width: 600px) {
+    font-size: ${style.extraLargeFontSize};
+  }
+  @media (max-width: 330px) {
+    font-size: ${style.midlargeFontSize};
+  }
 `
 export const button = css`
   display: flex;
@@ -40,6 +47,16 @@ export const button = css`
   &:hover {
     background:${style.buttonHoverBackground};
   }
+  @media (max-width: 600px) {
+    flex-direction: column;
+    min-width: ${props =>(props.size === "big" ? `5em` : `2em`)};
+    min-height: 2em;
+  }
+  @media (max-width: 300px) {
+    flex-direction: column;
+    min-width: ${props =>(props.size === "big" ? `4.6em` : `1.8em`)};
+    min-height: 1.8em;
+  }
 `
 export const displayInput = css`
   font-size:${style.extraLargeFontSize};
@@ -48,7 +65,12 @@ export const displayInput = css`
   width: 95%;
   border: white;
   margin-bottom: 5px;
-  transition: margin .8s ease;
+  @media (max-width: 600px) {
+    width: 93%;
+  }
+  @media (max-width: 300px) {
+    font-size:${style.largeFontSize};
+  }
 `
 export const displayEquation = css`
   width: 100%;
@@ -77,6 +99,9 @@ export const calculator = css`
   justify-content: center;
   max-width: 385px;
   margin: 0 auto;
+  @media (max-width: 600px) {
+    max-width: 290px;
+  }
 `
 export const buttonRow = css`
   display: flex;
