@@ -1,6 +1,4 @@
-import styled from 'styled-components';
 import Calculator from '../Calculator'
-
 function App() {
   return (
     <div className="App">
@@ -8,5 +6,4 @@ function App() {
     </div>
   );
 }
-
 export default App;

@@ -7,6 +7,7 @@ import {
   SET_COMPUTATION_PERCENTAGE,
   EQUALS,
   COMMA,
+  ZERO,
   PERCENTAGE,
   PLUSMINUS,
   SET_PLUS_MINUS,
@@ -38,6 +39,8 @@ function mathOperators(operator){
       return "*";
     case DIVIDE:
       return "/";
+    case COMMA:
+      return ".";
     default : 
       return operator;
   }
@@ -89,11 +92,20 @@ export const useButton = (title) => {
         });
         break;
       case COMMA:
+        console.log(state)
         dispatch({
           type: SET_COMPUTATION,
-          payload: title
+          payload: mathOperators(title)
         });
         break;
+      case ZERO:
+          if(state.computation){
+            dispatch({
+              type: SET_COMPUTATION,
+              payload: mathOperators(title)
+            });
+          }
+          break;
       case PERCENTAGE:
         if(!state.computation.includes(EQUALS)){
           dispatch({

@@ -10,7 +10,7 @@ const style = {
   normalFontSize: '1em',
   largeFontSize: '1.5em',
   midlargeFontSize: '2.1em',
-  extraLargeFontSize: '2.6em',
+  extraLargeFontSize: '2.4em',
   massiveFontSize: '4em',
   buttonColor: '#e6e6e7',
   buttonHoverBackground: '#aaaaab',
@@ -57,6 +57,14 @@ export const button = css`
     min-width: ${props =>(props.size === "big" ? `4.6em` : `1.8em`)};
     min-height: 1.8em;
   }
+  
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+     -moz-user-select: none; /* Old versions of Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+          user-select: none; /* Non-prefixed version, currently
+                                supported by Chrome, Edge, Opera and Firefox */
 `
 export const displayInput = css`
   font-size:${style.extraLargeFontSize};
