@@ -5,6 +5,8 @@ its juts a small calculator
 
 - React
 - styled-components
+## This project runs on docker
+`docker-compose up -d  --build`
 
-## Assesment version
+## Assessment version
 `72cf4fe47f85c39779267d0ecee07655a354e623`
