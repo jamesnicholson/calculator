@@ -4,6 +4,7 @@ import { GlobalContext } from '../context'
 import { 
   SET_COMPUTATION,
   SET_RESULT,
+  SET_RESET_CURRENT_NUMBER,
   SET_COMPUTATION_PERCENTAGE,
   EQUALS,
   COMMA,
@@ -92,20 +93,32 @@ export const useButton = (title) => {
         });
         break;
       case COMMA:
-        console.log(state)
-        dispatch({
-          type: SET_COMPUTATION,
-          payload: mathOperators(title)
-        });
-        break;
-      case ZERO:
-          if(state.computation){
+        let testCurrentNumber = state.currentNumber
+       if(!testCurrentNumber.includes(mathOperators(title))) {
+          if(testCurrentNumber.length !== 0){
             dispatch({
               type: SET_COMPUTATION,
               payload: mathOperators(title)
             });
           }
-          break;
+        }
+        break;
+      case ZERO:
+        let testZero = state.result
+        if((testZero.charAt(0) !== ZERO)){
+          dispatch({
+            type: SET_COMPUTATION,
+            payload: mathOperators(title)
+          });
+        }else{
+          if(testZero.substring(0, 2) === (ZERO+mathOperators(COMMA))){
+            dispatch({
+              type: SET_COMPUTATION,
+              payload: mathOperators(title)
+            });
+          }
+        }
+        break;
       case PERCENTAGE:
         if(!state.computation.includes(EQUALS)){
           dispatch({
@@ -132,7 +145,7 @@ export const useButton = (title) => {
         break;
       default:
         if(!Number(title)) {
-
+           // The MATHS OPERATOR Handler
           if(state.computation.includes(EQUALS)){
             dispatch({
               type: SET_CLEAR,
@@ -143,7 +156,6 @@ export const useButton = (title) => {
               payload: state.result
             });
           }
-
           if(state.currentOperator.length === 0) {
             dispatch({
               type: SET_COMPUTATION,
@@ -153,9 +165,21 @@ export const useButton = (title) => {
               type: SET_CURRENT_OPERATOR,
               payload: mathOperators(title)
             });
+            dispatch({
+              type: SET_RESET_CURRENT_NUMBER,
+              payload: mathOperators(title)
+            });
           }
 
       } else {
+        // The DIGIT Handler
+        let result = state.result
+        if(result.charAt(0) === ZERO && result.length === 1) {
+          dispatch({
+            type: SET_CLEAR,
+            payload: CLEAR_ALL
+          });
+        }
         if(state.computation.includes(EQUALS)){
           dispatch({
             type: SET_CLEAR,

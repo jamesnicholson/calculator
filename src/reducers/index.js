@@ -3,6 +3,7 @@ import {
     SET_RESULT,
     SET_CLEAR,
     SET_CURRENT_OPERATOR,
+    SET_RESET_CURRENT_NUMBER,
     SET_COMPUTATION_PERCENTAGE,
     SET_PLUS_MINUS
 } from '../utils/enums'
@@ -14,7 +15,8 @@ const setComputation = (payload, state) => {
         ...state,
         computation: state.computation + payload,
         equationExecuted: false,
-        result: state.currentOperator.length > 0 ? payload : state.result + payload
+        currentNumber: state.currentNumber + payload,
+        result: state.result + payload
     };
 };
 const setResultPercentage = (payload, state) => {
@@ -28,7 +30,6 @@ const setResultPercentage = (payload, state) => {
     };
 };
 const setResult = (payload, state) => {
-
     return {
         ...state,
         result: evaluate(state.computation),
@@ -54,9 +55,15 @@ const setClear = (payload, state) => {
         ...state,
         computation: "",
         result: "",
+        currentNumber: "",
     };
 };
-
+const setResetCurrentNumber = (payload, state) => {
+    return {
+        ...state,
+        currentNumber: "",
+    };
+};
 const reducer = (state, action) => {
     switch(action.type){
         case SET_COMPUTATION :
@@ -65,6 +72,8 @@ const reducer = (state, action) => {
             return setResult(action.payload, state);
         case SET_CURRENT_OPERATOR :
             return setCurrentOperator(action.payload, state);
+        case SET_RESET_CURRENT_NUMBER :
+            return setResetCurrentNumber(action.payload, state);
         case SET_CLEAR :
             return setClear(action.payload, state);
         case SET_COMPUTATION_PERCENTAGE :

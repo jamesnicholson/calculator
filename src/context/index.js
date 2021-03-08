@@ -3,6 +3,7 @@ import reducer from '../reducers'
 
 const initialState = {
     currentOperator: "",
+    currentNumber: "",
     computation: "",
     equationExecuted: false,
     result: ""

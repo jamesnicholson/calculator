@@ -1,8 +1,9 @@
 # An Calculator App
 its juts a small calculator 
  `yarn start` to get it going
-## tech used
 
+Demo URL: http://161.35.115.185:3100/
+## tech used
 - React
 - styled-components
 ## This project runs on docker

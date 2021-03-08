@@ -59,7 +59,6 @@ const Calculator = () => {
                     <Button id={TWO} />
                     <Button id={THREE} />
                     <Button id={PLUS} />
-             
                 </Row>
                 <Row>
                     <Button id={ZERO} />

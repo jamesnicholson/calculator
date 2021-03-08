@@ -44,6 +44,17 @@ export const button = css`
   min-height: 3em;
   justify-content: center;
   border: 1px solid #8bc34a5c;
+  -moz-transition: all .2s ease-in;
+  -o-transition: all .2s ease-in;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+     -moz-user-select: none; /* Old versions of Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+          user-select: none; /* Non-prefixed version, currently
+                                supported by Chrome, Edge, Opera and Firefox */
   &:hover {
     background:${style.buttonHoverBackground};
   }
@@ -57,14 +68,6 @@ export const button = css`
     min-width: ${props =>(props.size === "big" ? `4.6em` : `1.8em`)};
     min-height: 1.8em;
   }
-  
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-   -khtml-user-select: none; /* Konqueror HTML */
-     -moz-user-select: none; /* Old versions of Firefox */
-      -ms-user-select: none; /* Internet Explorer/Edge */
-          user-select: none; /* Non-prefixed version, currently
-                                supported by Chrome, Edge, Opera and Firefox */
 `
 export const displayInput = css`
   font-size:${style.extraLargeFontSize};
