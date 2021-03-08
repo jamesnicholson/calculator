@@ -11,11 +11,8 @@ const DisplayContainer = styled.div`
 
 const Display = () => {
     const [input] = useInput();
-    const [display] = useDisplay();
-
     return  <DisplayContainer>
                 <DisplayRow>{input}</DisplayRow>
-                <DisplayRow>{display}</DisplayRow>
             </DisplayContainer>
 }
 export default Display
