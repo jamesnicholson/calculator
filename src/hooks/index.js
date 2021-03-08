@@ -84,7 +84,7 @@ export const useButton = (title) => {
         }
         break;
       case ZERO:
-        currentNumber = state.currentNumber
+        currentNumber =  state ? state.currentNumber : ""
         if((currentNumber.charAt(0) !== ZERO)){
           dispatch({
             type: SET_COMPUTATION,
@@ -119,7 +119,7 @@ export const useButton = (title) => {
         }
         break;  
       case EQUALS:
-        let theEquation = state.computation;
+        let theEquation = state ? state.computation: 0;
         if(theEquation && state.result){
           let lastCharacter = theEquation.substring(theEquation.length -1, theEquation.length)
           if(Number(lastCharacter) || lastCharacter === ZERO || lastCharacter === PERCENTAGE){
