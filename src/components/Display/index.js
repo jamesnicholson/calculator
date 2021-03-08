@@ -1,4 +1,4 @@
-import { useInput, useDisplay } from '../../hooks'
+import { useInput } from '../../hooks'
 import styled from 'styled-components'
 import { displayRow, displayContainer } from '../../styles'
 
