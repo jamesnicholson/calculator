@@ -1,3 +1,5 @@
+import { evaluate } from 'mathjs'
+import { mathOperators } from '../utils/helpers'
 import {
     SET_COMPUTATION,
     SET_RESULT,
@@ -5,14 +7,12 @@ import {
     SET_CURRENT_OPERATOR,
     SET_RESET_CURRENT_NUMBER,
     SET_COMPUTATION_PERCENTAGE,
-    SET_PLUS_MINUS,
+    SET_BACKSPACE,
     PERCENTAGE
 } from '../utils/enums'
-import { evaluate } from 'mathjs'
-import { mathOperators } from '../hooks'
+
 const setComputation = (payload, state) => {
     let formatedPayload = payload
-    
     if(!Number(payload)) {
         formatedPayload = mathOperators(payload)
     }
@@ -41,11 +41,12 @@ const setResult = (payload, state) => {
         computation: state.computation + payload,
     };
 };
-const setPlusMinus = (payload, state) => {
+const setBackspace = (state) => {
     return {
         ...state,
-        result: -(state.result),
-        computation: state.computation,
+        result: state.result.slice(0, -1) ,
+        currentNumber: state.currentNumber.slice(0, -1) ,
+        computation: state.computation.slice(0, -1) ,
     };
 };
 const setCurrentOperator = (payload, state) => {
@@ -82,8 +83,8 @@ const reducer = (state, action) => {
             return setClear(state);
         case SET_COMPUTATION_PERCENTAGE :
             return setResultPercentage(action.payload, state);
-        case SET_PLUS_MINUS :
-            return setPlusMinus(action.payload, state);
+        case SET_BACKSPACE :
+            return setBackspace(state);
         default : 
            return state;
     };

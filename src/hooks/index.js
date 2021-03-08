@@ -1,6 +1,8 @@
 import React, { useState, useRef, useContext, useEffect} from 'react'
 import styled from 'styled-components'
 import { GlobalContext } from '../context'
+import { displayInput , displayEquation} from '../styles'
+import { mathOperators }  from '../utils/helpers'
 import { 
   SET_COMPUTATION,
   SET_RESULT,
@@ -10,19 +12,12 @@ import {
   COMMA,
   ZERO,
   PERCENTAGE,
-  PLUSMINUS,
-  SET_PLUS_MINUS,
+  BACKSPACE,
+  SET_BACKSPACE,
   CLEAR,
   SET_CLEAR,
-  PLUS,
-  MINUS,
-  MULTIPLY,
-  DIVIDE,
-  CLEAR_ALL,
   SET_CURRENT_OPERATOR
 } from '../utils/enums'
-import { displayInput , displayEquation} from '../styles'
-import { cos } from 'mathjs'
 
 const DisplayInput = styled.input`
   ${displayInput}
@@ -31,23 +26,6 @@ const DisplayInput = styled.input`
 const DisplayEquation = styled.div`
   ${displayEquation}
   `
-export function mathOperators(operator){
-  switch(operator){
-    case PLUS:
-      return "+";
-    case MINUS:
-      return "-";
-    case MULTIPLY:
-      return "*";
-    case DIVIDE:
-      return "/";
-    case COMMA:
-      return ".";
-    default : 
-      return operator;
-  }
-}
-
 export const useInput = () => {
     const {state} = useContext(GlobalContext);
     const [value, setValue] = useState("");
@@ -91,8 +69,7 @@ export const useButton = (title) => {
     switch(title) {
       case CLEAR:
         dispatch({
-          type: SET_CLEAR,
-          payload: CLEAR_ALL
+          type: SET_CLEAR
         });
         break;
       case COMMA:
@@ -130,12 +107,16 @@ export const useButton = (title) => {
           });
         }
         break;
-      case PLUSMINUS:
-        /*
-        dispatch({
-          type: SET_PLUS_MINUS,
-          payload: title
-        });*/
+      case BACKSPACE:
+        if(state.equationExecuted){
+          dispatch({
+            type: SET_CLEAR
+          });
+        }else{
+          dispatch({
+            type: SET_BACKSPACE
+          });
+        }
         break;  
       case EQUALS:
         let theEquation = state.computation;
@@ -149,7 +130,6 @@ export const useButton = (title) => {
               });
             }
           }
-
         }
         break;
       default:
@@ -182,8 +162,7 @@ export const useButton = (title) => {
         // The DIGIT Handler
         if(state.computation.includes(EQUALS)){
           dispatch({
-            type: SET_CLEAR,
-            payload: CLEAR_ALL
+            type: SET_CLEAR
           });
         }
         dispatch({

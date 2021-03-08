@@ -16,7 +16,7 @@ import {
     NINE,
     CLEAR,
     COMMA,
-    PLUSMINUS,
+    BACKSPACE,
     PERCENTAGE,
     DIVIDE,
     MULTIPLY,
@@ -38,7 +38,7 @@ const Calculator = () => {
                 <Row><Display /></Row>
                 <Row>
                     <Button id={CLEAR} />
-                    <Button id={PLUSMINUS}/>
+                    <Button id={BACKSPACE}/>
                     <Button id={PERCENTAGE} />
                     <Button id={DIVIDE}/>
                 </Row>
