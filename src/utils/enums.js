@@ -20,6 +20,8 @@ export const EQUALS = "=";
 export const DIGIT = "DIGIT";
 export const ACTION = "ACTION";
 export const SET_COMPUTATION = "SET_COMPUTATION";
+export const SET_DIGIT = "SET_DIGIT";
+export const SET_OPERATOR = "SET_OPERATOR";
 export const SET_RESULT = "SET_RESULT";
 export const SET_CURRENT_OPERATOR = "SET_CURRENT_OPERATOR";
 export const SET_RESET_CURRENT_NUMBER = "SET_RESET_CURRENT_NUMBER";

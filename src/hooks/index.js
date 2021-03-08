@@ -22,6 +22,7 @@ import {
   SET_CURRENT_OPERATOR
 } from '../utils/enums'
 import { displayInput , displayEquation} from '../styles'
+import { cos } from 'mathjs'
 
 const DisplayInput = styled.input`
   ${displayInput}
@@ -30,7 +31,7 @@ const DisplayInput = styled.input`
 const DisplayEquation = styled.div`
   ${displayEquation}
   `
-function mathOperators(operator){
+export function mathOperators(operator){
   switch(operator){
     case PLUS:
       return "+";
@@ -73,6 +74,7 @@ export const useDisplay = () => {
   const {state} = useContext(GlobalContext);
   const [value, setValue] = useState("");
   const inputRef = useRef(null)
+
   useEffect(() => {
     if(state){
       setValue(<DisplayEquation>{state.computation}</DisplayEquation>)
@@ -84,6 +86,7 @@ export const useDisplay = () => {
 
 export const useButton = (title) => {
   const {state, dispatch} = useContext(GlobalContext);
+  let currentNumber = "";
   const handler = () => {
     switch(title) {
       case CLEAR:
@@ -93,28 +96,28 @@ export const useButton = (title) => {
         });
         break;
       case COMMA:
-        let testCurrentNumber = state.currentNumber
-       if(!testCurrentNumber.includes(mathOperators(title))) {
-          if(testCurrentNumber.length !== 0){
+        currentNumber = state.currentNumber
+       if(!currentNumber.includes(title)) {
+          if(currentNumber.length !== 0){
             dispatch({
               type: SET_COMPUTATION,
-              payload: mathOperators(title)
+              payload: title
             });
           }
         }
         break;
       case ZERO:
-        let testZero = state.result
-        if((testZero.charAt(0) !== ZERO)){
+        currentNumber = state.currentNumber
+        if((currentNumber.charAt(0) !== ZERO)){
           dispatch({
             type: SET_COMPUTATION,
-            payload: mathOperators(title)
+            payload: title
           });
         }else{
-          if(testZero.substring(0, 2) === (ZERO+mathOperators(COMMA))){
+          if(currentNumber.substring(0, 2) === (ZERO+COMMA)){
             dispatch({
               type: SET_COMPUTATION,
-              payload: mathOperators(title)
+              payload: title
             });
           }
         }
@@ -128,19 +131,25 @@ export const useButton = (title) => {
         }
         break;
       case PLUSMINUS:
+        /*
         dispatch({
           type: SET_PLUS_MINUS,
           payload: title
-        });
+        });*/
         break;  
       case EQUALS:
-        if(state.computation && state.result){
-          if(!state.computation.includes(EQUALS)){
-            dispatch({
-              type: SET_RESULT,
-              payload: title
-            });
+        let theEquation = state.computation;
+        if(theEquation && state.result){
+          let lastCharacter = theEquation.substring(theEquation.length -1, theEquation.length)
+          if(Number(lastCharacter) || lastCharacter === ZERO || lastCharacter === PERCENTAGE){
+            if((!theEquation.includes(EQUALS))){
+              dispatch({
+                type: SET_RESULT,
+                payload: title
+              });
+            }
           }
+
         }
         break;
       default:
@@ -148,8 +157,7 @@ export const useButton = (title) => {
            // The MATHS OPERATOR Handler
           if(state.computation.includes(EQUALS)){
             dispatch({
-              type: SET_CLEAR,
-              payload: CLEAR_ALL
+              type: SET_CLEAR
             });
             dispatch({
               type: SET_COMPUTATION,
@@ -159,27 +167,19 @@ export const useButton = (title) => {
           if(state.currentOperator.length === 0) {
             dispatch({
               type: SET_COMPUTATION,
-              payload: mathOperators(title)
+              payload: title
             });
             dispatch({
               type: SET_CURRENT_OPERATOR,
               payload: mathOperators(title)
             });
             dispatch({
-              type: SET_RESET_CURRENT_NUMBER,
-              payload: mathOperators(title)
+              type: SET_RESET_CURRENT_NUMBER
             });
           }
 
       } else {
         // The DIGIT Handler
-        let result = state.result
-        if(result.charAt(0) === ZERO && result.length === 1) {
-          dispatch({
-            type: SET_CLEAR,
-            payload: CLEAR_ALL
-          });
-        }
         if(state.computation.includes(EQUALS)){
           dispatch({
             type: SET_CLEAR,
