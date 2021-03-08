@@ -2,7 +2,7 @@
 its juts a small calculator 
  `yarn start` to get it going
 
-Demo URL: http://161.35.115.185:3100/
+Demo URL: http://161.35.115.185:3200/
 ## tech used
 - React
 - styled-components
