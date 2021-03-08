@@ -44,6 +44,7 @@ export const button = css`
   min-height: 3em;
   justify-content: center;
   border: 1px solid #8bc34a5c;
+  opacity:1;
   -moz-transition: all .2s ease-in;
   -o-transition: all .2s ease-in;
   -webkit-transition: all .2s ease-in;
@@ -55,8 +56,8 @@ export const button = css`
       -ms-user-select: none; /* Internet Explorer/Edge */
           user-select: none; /* Non-prefixed version, currently
                                 supported by Chrome, Edge, Opera and Firefox */
-  &:hover {
-    background:${style.buttonHoverBackground};
+  &:hover, &:active{
+    opacity:0.5;
   }
   @media (max-width: 600px) {
     flex-direction: column;
