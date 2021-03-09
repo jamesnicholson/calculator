@@ -100,7 +100,7 @@ export const useButton = (title) => {
         }
         break;
       case PERCENTAGE:
-        if(!state.computation.includes(EQUALS)){
+        if(!state.computation.includes(EQUALS) && !state.computation.includes(PERCENTAGE)){
           dispatch({
             type: SET_COMPUTATION_PERCENTAGE,
             payload: title
